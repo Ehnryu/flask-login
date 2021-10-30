@@ -7,8 +7,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-  return """
-  placeholder"""
+  return render_template("index.html")
 
 @app.route('/login/',methods=['GET', 'POST'])
 def login():
@@ -29,7 +28,7 @@ def login():
 				return "deleted your data..."				
 		if str(usr) in login:
 			if pwd == login[usr]["password"]:
-				return render_template("index.html")
+				return "logged in!"
 			if pwd != login[usr]["password"]:
 				return "Wrong password"
 		else:
@@ -45,7 +44,7 @@ def login():
 		<head>
 			<meta charset="utf-8">
 			<title>Login</title>
-			<link rel="stylesheet" href="static/style.css">
+			<link rel="stylesheet" href="../static/style.css">
 			<link href="https://fonts.googleapis.com/css?family=Coiny" rel="stylesheet">
 			<link href="https://fonts.googleapis.com/css?family=Libre+Baskerville" rel="stylesheet">
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/brython/3.8.8/brython.js" integrity="sha256-rA89wPrTJJQFWJaZveKW8jpdmC3t5F9rRkPyBjz8G04=" crossorigin="anonymous"></script>
@@ -53,7 +52,7 @@ def login():
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/brython/3.8.8/brython_stdlib.js" integrity="sha256-Gnrw9tIjrsXcZSCh/wos5Jrpn0bNVNFJuNJI9d71TDs=" crossorigin="anonymous"></script>
 	</head>
 		<body>
-			<form method = "POST" class="container">
+			<form action = "https://flask-login.eris9.repl.co/login/" method = "POST" class="container">
 				<h1>LOGIN</h1>
 				<div><label>Username: <input type="text" name="username"></label></div>
         <div><label>Password: <input type="text" name="password"></label></div>
